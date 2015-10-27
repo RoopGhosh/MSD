@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function initialize()
+{
+
+  var myCenter = new google.maps.LatLng(51.508742,-0.120850);
+  var mapProp = {
+    center: myCenter,
+    zoom:7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  
+  var contentString  = '<div id="content">'+
+      '<div id="bodyContent">'+
+      '<p>Hello World: <a href="https://en.wikipedia.org/wiki/Hello">'+
+      'Hello World</a> '+
+      '</div>'+
+      '</div>';
+
+
+var infowindow = new google.maps.InfoWindow({
+  content:contentString
+  });
+  
+  var marker=new google.maps.Marker({
+  position:myCenter,
+  });
+
+marker.setMap(map);
+
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+  });
+}
+
+function loadScript()
+{
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:500px;"></div>
+
+</body>
+</html>
