@@ -1,0 +1,36 @@
+﻿    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+  <head>
+    <title>Google Maps for Direction</title>
+  </head>
+
+<body>
+<h3>Google Maps for Driving Instructions</h3> 
+    <hr />
+    <p>
+        I have used the Google Maps API to provide Instructions on how to reach a destination.
+        <br/>
+        The User has to enter the Starting Address and it directs the User how to reach Northeastern University.
+        <br/>
+        This can be acheived by using the maps directly as a Action in the form with the get method.
+    </p>
+    <hr />
+
+<form action="http://maps.google.com/maps" method="get" target="_blank">
+Enter your Starting address:
+<input type="text" name="saddr" />
+<br/>
+<br/>
+Enter your Destination address : 
+<input type="text" name="daddr"/>
+<br/>
+<input type="submit" value="Get Directions" />
+</form>
+    <hr/>
+        <div>
+
+    </body>
+ </html>
