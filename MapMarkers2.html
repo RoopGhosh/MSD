@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function initialize()
+{
+
+   var locations = [
+      ['Northeastern University','http://www.northeastern.edu/', 42.3398198, -71.0875516, 5],
+      ['Boston University','http://www.bu.edu/', 42.3535562, -71.1229418, 4],
+      ['MIT','http://web.mit.edu/',42.3584488, -71.0912204, 3],
+      ['Harvard University','http://www.harvard.edu/', 42.3770029, -71.1166601, 2],
+      ['Berklee College','https://www.berklee.edu/', 42.3470419, -71.0875517, 1]
+    ];
+
+  var myCenter = new google.maps.LatLng(42.3398198,-71.0875516);
+  var mapProp = {
+    center: myCenter,
+    zoom:12,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var infowindow = new google.maps.InfoWindow();
+var marker, i;
+for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+		  var contentString  = '<div id="content">'+
+      '<div id="bodyContent">'+
+      '<p>'+ locations[i][0]+' <a href="'+locations[i][1]+'" '+'target="_blank"'+'>'+
+      ''+locations[i][0]+'</a>'+
+      '</div>'+
+      '</div>';
+          infowindow.setContent(contentString);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+}
+
+function loadScript()
+{
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:750px;height:750px;"></div>
+
+</body>
+</html>
